@@ -9,9 +9,9 @@
   },
   "DataProviders": {
     "MongodbSmart": {
-      "host": "mongodb-p-zdsr5-mongodb.mongodb-p-zdsr5:27017",
+      "host": "mongodb-replicaset.mongodb-replicaset:27017",
       "db": "smart",
-      "replicaSetName": "",
+      "replicaSetName": "rs0",
       "user": "",
       "pass": ""
     }

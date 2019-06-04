@@ -44,7 +44,6 @@ func (o *Service) getComdition(req *pb.ReqFind) (bson.M, []string, int, int) {
 }
 
 func (o *Service) Find(ctx context.Context, req *pb.ReqFind, rsp *pb.ResDocs) error {
-	fmt.Println("Sequence Find")
 	condition, sorts, skip, limit := o.getComdition(req)
 	docs, err := o.dao.Find(condition, sorts, skip, limit)
 	rsp.Status = o.OK

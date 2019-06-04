@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: default
+  name: vc-svc
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: vc-svc
+  template:
+    metadata:
+      labels:
+        app: vc-svc
+    spec:
+      containers:
+        - name: vc-svc
+          # command: [
+          #   "vc-svc",
+          #   "--server_address=0.0.0.0:8080",
+          #   "--broker_address=0.0.0.0:10001",
+          #   "--registry=kubernetes"
+          # ]
+          image: zeqi/vc-svc:0.1.0
+          imagePullPolicy: IfNotPresent
+          ports:
+          - containerPort: 8080
+            name: vc-svc-port
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: vc-svc
+  namespace: default
+  labels:
+    app: vc-svc
+spec:
+  ports:
+  - port: 8080
+    protocol: TCP
+  selector:
+    app: vc-svc

@@ -4,7 +4,7 @@ metadata:
   namespace: default
   name: vc-svc
 spec:
-  replicas: 1
+  replicas: 3
   selector:
     matchLabels:
       app: vc-svc
@@ -15,12 +15,16 @@ spec:
     spec:
       containers:
         - name: vc-svc
-          # command: [
-          #   "vc-svc",
-          #   "--server_address=0.0.0.0:8080",
-          #   "--broker_address=0.0.0.0:10001",
-          #   "--registry=kubernetes"
-          # ]
+          env:
+          - name: GOPATH
+            value: /go:$GOPATH
+          command: [
+            "/go/src/vc.svc/vc-svc",
+            # "--selector=static",
+            "--server_address=0.0.0.0:8080",
+            "--broker_address=0.0.0.0:10001",
+            "--registry=kubernetes"
+          ]
           image: zeqi/vc-svc:0.1.0
           imagePullPolicy: IfNotPresent
           ports:

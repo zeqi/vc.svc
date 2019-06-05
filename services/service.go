@@ -4,12 +4,13 @@ import (
 	"fmt"
 	"time"
 
+	"github.com/micro/go-grpc"
 	// "github.com/micro/go-grpc"
 
 	// "github.com/micro/go-plugins/registry/etcd"
 
 	// "github.com/micro/go-plugins/registry/kubernetes"
-	k8s "github.com/micro/kubernetes/go/micro"
+	// k8s "github.com/micro/kubernetes/go/micro"
 	// k8s "github.com/micro/kubernetes/go/micro"
 	// static selector offloads load balancing to k8s services
 	// note: requires user to create k8s services
@@ -26,7 +27,7 @@ func Init(config models.MicroConfig) {
 	// r := etcdv3.NewRegistry(func(op *registry.Options) {
 	// 	op.Addrs = strings.Split(config.Etcd.Addrs, ",")
 	// })
-	service := k8s.NewService(
+	service := grpc.NewService(
 		micro.Name(config.Name),
 		// micro.Version("latest"),
 		micro.RegisterTTL(time.Second*30),

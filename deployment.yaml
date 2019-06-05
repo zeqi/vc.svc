@@ -27,6 +27,7 @@ spec:
             # "--selector=static",
             "--server_address=0.0.0.0:8080",
             "--broker_address=0.0.0.0:10001",
+            # "--server_version=v1",
             "--registry=kubernetes"
           ]
           image: zeqi/vc-svc:0.1.0

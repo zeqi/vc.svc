@@ -1,7 +1,8 @@
 {
-  "MicroServices":{
-    "MicroMongo":{
-      "Name":"vc-svc",
+  "MicroServices": {
+    "MicroMongo": {
+      "Name": "vc-svc",
+      "Version": "latest",
       "Etcd": {
         "addrs": "etcd-cluster-client.etcd-operator:2379"
       }

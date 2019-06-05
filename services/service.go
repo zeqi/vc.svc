@@ -29,7 +29,7 @@ func Init(config models.MicroConfig) {
 	// })
 	service := grpc.NewService(
 		micro.Name(config.Name),
-		// micro.Version("latest"),
+		micro.Version(config.Version),
 		micro.RegisterTTL(time.Second*30),
 		micro.RegisterInterval(time.Second*15),
 	// micro.Registry(r),

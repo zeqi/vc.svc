@@ -18,6 +18,10 @@ spec:
           env:
           - name: GOPATH
             value: /go:$GOPATH
+          - name: GO_ENV
+            value: default
+          - name: GIN_MODE
+            value: release
           command: [
             "/go/src/vc.svc/vc-svc",
             # "--selector=static",

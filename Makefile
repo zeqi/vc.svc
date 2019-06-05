@@ -32,7 +32,7 @@ build-linux-server:
 	CGO_ENABLED=0 GOOS=linux $(gobuild) $(server) $(plugin)
 
 docker-build:
-	docker rmi $(IMAGE_NAME)
+	# docker rmi $(IMAGE_NAME)
 	# docker rmi $(docker images | grep "^<none>" | awk "{print $3}")
 	docker build . -t $(IMAGE_NAME)
 

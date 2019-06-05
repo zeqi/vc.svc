@@ -15,6 +15,8 @@ pushd `dirname $0` > /dev/null
 # docker build -t $IMAGE_NAME .
 # docker push $IMAGE_NAME
 
-make build-linux-server
+# make build-linux-server
+docker ps -a | grep "Exited" | awk '{print $1 }'|xargs docker stop
+docker ps -a | grep "Exited" | awk '{print $1 }'|xargs docker rm
 docker rmi $(docker images | grep "^<none>" | awk "{print $3}")
 make docker-build

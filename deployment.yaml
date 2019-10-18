@@ -4,7 +4,7 @@ metadata:
   namespace: default
   name: vc-svc
 spec:
-  replicas: 3
+  replicas: 1
   selector:
     matchLabels:
       app: vc-svc
@@ -26,6 +26,8 @@ spec:
           command: [
             "/go/src/vc.svc/vc-svc",
             # "--selector=static",
+            # “--client=grpc”,
+            # "--server=grpc",
             "--server_address=0.0.0.0:8080",
             "--broker_address=0.0.0.0:10001",
             # "--server_version=v1",

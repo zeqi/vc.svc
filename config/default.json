@@ -2,19 +2,13 @@
   "MicroServices": {
     "MicroMongo": {
       "Name": "vc-svc",
-      "Version": "latest",
-      "Etcd": {
-        "addrs": "etcd-cluster-client.etcd-operator:2379"
-      }
+      "Version": "latest"
     }
   },
   "DataProviders": {
     "MongodbSmart": {
-      "host": "mongodb-replicaset.mongodb-replicaset:27017",
-      "db": "smart",
-      "replicaSetName": "rs0",
-      "user": "",
-      "pass": ""
+      "host": "localhost:27017",
+      "db": "smart"
     }
   }
 }

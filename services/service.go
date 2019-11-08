@@ -3,7 +3,6 @@ package services
 import (
 	"context"
 	"fmt"
-	"log"
 	"sync"
 	"time"
 
@@ -32,24 +31,17 @@ func Init(config models.MicroConfig) {
 	})
 }
 
-func logWrapper(fn server.HandlerFunc) server.HandlerFunc {
-	return func(ctx context.Context, req server.Request, rsp interface{}) error {
-		fmt.Printf("[%v] server request: %s", time.Now(), req.Endpoint())
-		return fn(ctx, req, rsp)
-	}
-}
-
 func (r *registrar) init(config models.MicroConfig) {
 	service := grpc.NewService(
 		micro.Name(config.Name),
 		micro.Version(config.Version),
-		micro.RegisterTTL(time.Minute),
-		micro.RegisterInterval(time.Second*30),
+		micro.RegisterTTL(time.Second*30),
+		micro.RegisterInterval(time.Second*15),
 		micro.BeforeStart(r.beforeStart),
 		micro.BeforeStop(r.beforeStop),
 		micro.AfterStart(r.afterStart),
 		micro.AfterStop(r.afterStop),
-		micro.WrapHandler(logWrapper),
+		micro.WrapHandler(r.logWrapper),
 	)
 	service.Init()
 	sequenceService.Register(service)
@@ -79,8 +71,7 @@ func (r *registrar) afterStop() error {
 
 func (r *registrar) logWrapper(fn server.HandlerFunc) server.HandlerFunc {
 	return func(ctx context.Context, req server.Request, rsp interface{}) error {
-		log.Printf("[wrapper] server request: %v", req.Endpoint())
-		err := fn(ctx, req, rsp)
-		return err
+		fmt.Printf("[%v] server request: %s\n", time.Now(), req.Endpoint())
+		return fn(ctx, req, rsp)
 	}
 }

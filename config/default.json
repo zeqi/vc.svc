@@ -1,7 +1,7 @@
 {
   "MicroServices": {
     "MicroMongo": {
-      "Name": "vc-svc",
+      "Name": "vc.svc",
       "Version": "latest"
     }
   },
